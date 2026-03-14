@@ -49,7 +49,7 @@ export function Navbar() {
             <img 
               src={`${import.meta.env.BASE_URL}images/logo.png`} 
               alt="Brightside Logo" 
-              className="h-10 w-10 object-contain"
+              className="h-16 w-16 object-contain"
             />
             <span className={cn(
               "font-display font-bold text-xl tracking-tight transition-colors",
