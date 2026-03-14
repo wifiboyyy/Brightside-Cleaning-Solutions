@@ -46,11 +46,13 @@ export function Navbar() {
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <img 
-              src={`${import.meta.env.BASE_URL}images/logo.png`} 
-              alt="Brightside Logo" 
-              className="h-16 w-16 object-contain"
-            />
+            <div className="h-12 w-12 flex items-center justify-center">
+              <img 
+                src={`${import.meta.env.BASE_URL}images/logo.png`} 
+                alt="Brightside Logo" 
+                className="h-full w-full object-contain object-center"
+              />
+            </div>
             <span className={cn(
               "font-display font-bold text-xl tracking-tight transition-colors",
               isScrolled ? "text-primary" : "text-primary md:text-white drop-shadow-md"
