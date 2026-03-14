@@ -14,3 +14,23 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Submits a new quote request from a potential customer
+ * @summary Submit a quote request
+ */
+export const submitQuoteBodyNameMin = 2;
+
+export const SubmitQuoteBody = zod.object({
+  name: zod.string().min(submitQuoteBodyNameMin),
+  email: zod.string().email(),
+  phone: zod.string(),
+  service: zod.enum([
+    "house_washing",
+    "driveway_cleaning",
+    "deck_patio_cleaning",
+    "other",
+  ]),
+  address: zod.string(),
+  message: zod.string().optional(),
+});

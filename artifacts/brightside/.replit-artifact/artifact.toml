@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Brightside Property Services"
+version = "1.0.0"
+id = "artifacts/brightside"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+localPort = 24584
+name = "web"
+paths = ["/"]
+
+[services.development]
+run = "pnpm --filter @workspace/brightside run dev"
+
+[services.env]
+PORT = "24584"
+BASE_PATH = "/"
+
+[services.production]
+build = ["pnpm", "--filter", "@workspace/brightside", "run", "build"]
+publicDir = "artifacts/brightside/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"

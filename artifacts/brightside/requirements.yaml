@@ -1,0 +1,22 @@
+packages:
+  "framer-motion": "For smooth scroll animations and section reveals"
+  "react-hook-form": "For managing the quote request form state"
+  "@hookform/resolvers": "For Zod validation integration with react-hook-form"
+  "zod": "For form validation schemas"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility to merge tailwind classes"
+
+images:
+  - path: "artifacts/brightside/public/images/logo.png"
+    description: "A clean, modern, professional logo for a pressure washing business named 'Brightside'. It should incorporate a subtle water drop or shining house motif, primarily in deep blue and vibrant cyan colors, on a transparent background."
+    aspect_ratio: "1:1"
+  - path: "artifacts/brightside/public/images/hero-bg.png"
+    description: "A high-quality, bright, and exceptionally clean exterior of a modern suburban house with a sparkling clean driveway. The image should have a subtle cool-blue tint and look highly professional, conveying cleanliness and trust. Lots of negative space at the top/center for text overlay."
+    aspect_ratio: "16:9"
+  - path: "artifacts/brightside/public/images/water-texture.png"
+    description: "An abstract, soft, and subtle background texture of clean, rippling water or subtle light blue waves, meant to be used as a section background. Very light, high key, mostly white with pale blue hints."
+    aspect_ratio: "16:9"
+
+notes:
+  - "The app uses React Query hooks generated from an OpenAPI spec located at @workspace/api-client-react"
+  - "The landing page is a single view with anchor scrolling."

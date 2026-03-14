@@ -1,6 +1,5 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
   description: API specification
@@ -10,6 +9,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: quotes
+    description: Quote request operations
 paths:
   /healthz:
     get:
@@ -24,6 +25,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /quotes:
+    post:
+      operationId: submitQuote
+      tags: [quotes]
+      summary: Submit a quote request
+      description: Submits a new quote request from a potential customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuoteRequest"
+      responses:
+        "201":
+          description: Quote request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuoteResponse"
+        "400":
+          description: Invalid input
 components:
   schemas:
     HealthStatus:
@@ -33,4 +55,41 @@ components:
           type: string
       required:
         - status
-
+    QuoteRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 2
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        service:
+          type: string
+          enum: [house_washing, driveway_cleaning, deck_patio_cleaning, other]
+        address:
+          type: string
+        message:
+          type: string
+      required:
+        - name
+        - email
+        - phone
+        - service
+        - address
+    QuoteResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        message:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - message
+        - createdAt

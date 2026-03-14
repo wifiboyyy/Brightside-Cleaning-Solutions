@@ -5,18 +5,21 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type {
+  MutationFunction,
   QueryFunction,
   QueryKey,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HealthStatus } from "./api.schemas";
+import type { HealthStatus, QuoteRequest, QuoteResponse } from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
-import type { ErrorType } from "../custom-fetch";
+import type { ErrorType, BodyType } from "../custom-fetch";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -99,3 +102,90 @@ export function useHealthCheck<
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+/**
+ * Submits a new quote request from a potential customer
+ * @summary Submit a quote request
+ */
+export const getSubmitQuoteUrl = () => {
+  return `/api/quotes`;
+};
+
+export const submitQuote = async (
+  quoteRequest: QuoteRequest,
+  options?: RequestInit,
+): Promise<QuoteResponse> => {
+  return customFetch<QuoteResponse>(getSubmitQuoteUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(quoteRequest),
+  });
+};
+
+export const getSubmitQuoteMutationOptions = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof submitQuote>>,
+    TError,
+    { data: BodyType<QuoteRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof submitQuote>>,
+  TError,
+  { data: BodyType<QuoteRequest> },
+  TContext
+> => {
+  const mutationKey = ["submitQuote"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof submitQuote>>,
+    { data: BodyType<QuoteRequest> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return submitQuote(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SubmitQuoteMutationResult = NonNullable<
+  Awaited<ReturnType<typeof submitQuote>>
+>;
+export type SubmitQuoteMutationBody = BodyType<QuoteRequest>;
+export type SubmitQuoteMutationError = ErrorType<void>;
+
+/**
+ * @summary Submit a quote request
+ */
+export const useSubmitQuote = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof submitQuote>>,
+    TError,
+    { data: BodyType<QuoteRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof submitQuote>>,
+  TError,
+  { data: BodyType<QuoteRequest> },
+  TContext
+> => {
+  return useMutation(getSubmitQuoteMutationOptions(options));
+};

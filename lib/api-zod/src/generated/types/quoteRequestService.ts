@@ -5,9 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
 
 export type QuoteRequestService =
   (typeof QuoteRequestService)[keyof typeof QuoteRequestService];
@@ -18,19 +15,3 @@ export const QuoteRequestService = {
   deck_patio_cleaning: "deck_patio_cleaning",
   other: "other",
 } as const;
-
-export interface QuoteRequest {
-  /** @minLength 2 */
-  name: string;
-  email: string;
-  phone: string;
-  service: QuoteRequestService;
-  address: string;
-  message?: string;
-}
-
-export interface QuoteResponse {
-  id: number;
-  message: string;
-  createdAt: string;
-}

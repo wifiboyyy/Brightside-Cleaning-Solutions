@@ -7,3 +7,6 @@
  */
 
 export * from "./healthStatus";
+export * from "./quoteRequest";
+export * from "./quoteRequestService";
+export * from "./quoteResponse";
