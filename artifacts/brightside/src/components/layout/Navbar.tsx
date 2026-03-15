@@ -36,7 +36,7 @@ export function Navbar() {
         "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm py-3"
-          : "bg-[#f5a623] py-3 shadow-lg"
+          : "bg-[#f5a623] py-1 shadow-lg"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,13 +46,11 @@ export function Navbar() {
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="h-28 w-72 flex items-center justify-center">
-              <img 
-                src={`${import.meta.env.BASE_URL}images/logo.png`} 
-                alt="Brightside Property Services Logo" 
-                className="h-full w-full object-contain object-center"
-              />
-            </div>
+            <img 
+              src={`${import.meta.env.BASE_URL}images/logo.png`} 
+              alt="Brightside Property Services Logo" 
+              style={{ height: '80px', width: 'auto' }}
+            />
           </div>
 
           {/* Desktop Nav */}
