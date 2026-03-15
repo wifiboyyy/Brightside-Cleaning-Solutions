@@ -46,7 +46,10 @@ export function Navbar() {
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="h-24 w-56 flex items-center justify-center">
+            <div className={cn(
+              "h-20 w-52 flex items-center justify-center rounded-xl transition-all duration-300 px-2",
+              isScrolled ? "bg-transparent" : "bg-white/95 shadow-md shadow-black/20"
+            )}>
               <img 
                 src={`${import.meta.env.BASE_URL}images/logo.png`} 
                 alt="Brightside Property Services Logo" 
