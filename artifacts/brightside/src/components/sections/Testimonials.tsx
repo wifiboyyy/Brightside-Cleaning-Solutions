@@ -21,18 +21,22 @@ export function Testimonials() {
   ];
 
   return (
-    <section id="testimonials" className="py-24 bg-primary text-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-accent rounded-full opacity-20 blur-3xl" />
-      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[500px] h-[500px] bg-secondary rounded-full opacity-10 blur-3xl" />
+    <section id="testimonials" className="py-24 bg-[#0f2472] text-white relative overflow-hidden">
+      {/* Golden yellow glow decorative blobs */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 bg-[#f5a623] rounded-full opacity-20 blur-3xl" />
+      <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[500px] h-[500px] bg-[#f5a623] rounded-full opacity-10 blur-3xl" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#f5a623] via-[#fbbf24] to-[#f5a623]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <Quote className="h-12 w-12 text-accent mx-auto mb-4 opacity-80" />
-          <h2 className="text-secondary font-bold tracking-wider uppercase text-sm mb-2">Customer Reviews</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-bold mb-6">
+          <Quote className="h-12 w-12 text-[#f5a623] mx-auto mb-4 opacity-80" />
+          <span className="inline-block px-4 py-1 rounded-full bg-[#f5a623]/20 text-[#f5a623] text-sm font-bold tracking-wider uppercase mb-4">
+            Customer Reviews
+          </span>
+          <h3 className="text-4xl md:text-5xl font-display font-bold mb-4">
             Loved by homeowners in Berks County
           </h3>
+          <div className="w-16 h-1 bg-[#f5a623] rounded-full mx-auto" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

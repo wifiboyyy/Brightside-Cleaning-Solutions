@@ -83,7 +83,7 @@ export function Navbar() {
                 (555) BRIGHT-7
               </a>
               <Button 
-                variant={isScrolled ? "default" : "secondary"}
+                className="bg-[#f5a623] hover:bg-[#e09510] text-[#0f2472] font-bold border-0 shadow-md"
                 onClick={() => scrollToSection('#quote')}
               >
                 Get a Free Quote
@@ -127,7 +127,7 @@ export function Navbar() {
             (555) 274-4487
           </a>
           <Button 
-            className="w-full" 
+            className="w-full bg-[#f5a623] hover:bg-[#e09510] text-[#0f2472] font-bold border-0" 
             size="lg"
             onClick={() => scrollToSection('#quote')}
           >
