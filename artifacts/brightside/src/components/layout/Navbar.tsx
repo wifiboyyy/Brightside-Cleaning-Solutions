@@ -43,18 +43,18 @@ export function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div 
-            className="flex items-center gap-2 cursor-pointer"
+            className="flex-shrink-0 top-1/2 left-4 transform -translate-y-1/2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <img 
               src={`${import.meta.env.BASE_URL}images/logo.png`} 
               alt="Brightside Property Services Logo" 
-              style={{ height: '80px', width: 'auto' }}
+              className="h-20 w-auto sm:h-28 md:h-32"
             />
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8 ml-4">
             <div className="flex items-center gap-6">
               {navLinks.map((link) => (
                 <button
